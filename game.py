@@ -1,4 +1,6 @@
 #!/bin/python3
+import randomGen
+
 def showInstructions():
     # print a main menu and the commands
     print('''
@@ -22,28 +24,14 @@ def showStatus():
     if "item" in rooms[currentRoom]:
         print('You see a ' + rooms[currentRoom]['item'])
     print("---------------------------")
+    randomGen.printtable(map)
 
 
 # an inventory, which is initially empty
 inventory = []
 # a dictionary linking a room to other room positions
-rooms = {
-    'Hall': {'south': 'Kitchen',
-             'east': 'Dining Room',
-             'item': 'key'
-             },
-    'Kitchen': {'north': 'Hall',
-                'item': 'monster'
-                },
-
-    'Dining Room': {'west': 'Hall',
-                    'south': 'Garden',
-                    'item': 'potion'
-
-                    },
-
-    'Garden': {'north': 'Dining Room'}
-}
+modules= ["Hall", "Boss", "Bedroom", "Kitchen", "Bathroom", "SittingRoom", "Garage", "Garden"]
+rooms, map  = randomGen.generateMap(modules, 5)
 # start the player in the Hall
 currentRoom = 'Hall'
 showInstructions()
