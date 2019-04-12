@@ -30,7 +30,7 @@ inventory = []
 rooms = {
     'Hall': {'south': 'Kitchen',
              'east': 'Dining Room',
-             'item': 'potion'
+             'item': 'key'
              },
     'Kitchen': {'north': 'Hall',
                 'item': 'monster'
@@ -38,7 +38,7 @@ rooms = {
 
     'Dining Room': {'west': 'Hall',
                     'south': 'Garden',
-                    'item': 'key'
+                    'item': 'potion'
                     },
 
     'Garden': {'north': 'Dining Room'}
