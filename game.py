@@ -30,7 +30,7 @@ def showStatus():
 # an inventory, which is initially empty
 inventory = []
 # a dictionary linking a room to other room positions
-modules= ["Hall", "Boss", "Bedroom", "Kitchen", "Bathroom", "SittingRoom", "Garage", "Garden"]
+modules= ["Hall", "Living room", "Kitchen", "Bathroom", "Room 1", "Room 2", "Room 3", "Garage", "Garden"]
 rooms, map  = randomGen.generateMap(modules, 5)
 # start the player in the Hall
 currentRoom = 'Hall'
