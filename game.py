@@ -39,7 +39,6 @@ rooms = {
     'Dining Room': {'west': 'Hall',
                     'south': 'Garden',
                     'item': 'potion'
-
                     },
 
     'Garden': {'north': 'Dining Room'}
@@ -84,8 +83,16 @@ while True:
             print('Can\'t get ' + move[1] + '!')
     # player loses if they enter a room with a monster
     if 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item']:
-        print('A monster has got you... GAME OVER!')
-        break
+        if 'potion' in inventory:
+            print('You throw the potion to the beast and u defeat them.')
+            inventory.remove('potion')
+            rooms[currentRoom].pop('item')
+            # Eliminar posiocion monster y potion de los arrays.
+        else :  
+            print('A monster has got you... GAME OVER!')
+            break
+            
+            
     # player wins if they get to the garden with a key and a shield
     if currentRoom == 'Garden' and 'key' in inventory and 'potion' in inventory:
         print('You escaped the house... YOU WIN!')
