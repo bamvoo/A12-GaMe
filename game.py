@@ -31,12 +31,18 @@ def showRoom(room):
         message += " the north"
     if "west" in room:
         if roomFound > 0:
-            message+= ","
+            if "south" in room or "east" in room:
+                message+= ","
+            else:
+                message+= " and to"    
         roomFound += 1
         message += " the west"
     if "south" in room:
         if roomFound > 0:
-            message+= ","
+            if "east" in room:
+                message+= ","
+            else:
+                message+= " and to"  
         roomFound += 1
         message += " the south"
     if "east" in room:
