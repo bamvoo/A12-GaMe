@@ -1,7 +1,6 @@
 #!/bin/python3
 import random
 
-
 def printtable(map):
     for y in range(len(map)):
         line = ''
@@ -77,21 +76,9 @@ def generateMap(modules, dimension):
             y += 1
         elif mod == 3:
             x -= 1
-
-        '''if i == 9 and 2 not in map:
-            map[y][x] = 2
-        elif i == 8 and 3 not in map:
-            map[y][x] = 3
-        else:
-            map[y][x] = random.randint(4, len(modules))'''
-
         map[y][x] = i + 1;
 
-        # printtable(map)
-
         i += 1
-
-    printtable(map)
 
     rooms = {}
 
@@ -112,9 +99,7 @@ def generateMap(modules, dimension):
             if x > 0 and map[y][x - 1] != 0:
                 room.update({'west': modules[map[y][x - 1] - 1]})
 
-            #print(str(room))
             rooms.update({modules[map[y][x] - 1]: room})
-            #print(str(rooms))
 
     items = {
         0: 'portion',

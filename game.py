@@ -24,8 +24,6 @@ def showStatus():
     if "item" in rooms[currentRoom]:
         print('You see a ' + rooms[currentRoom]['item'])
     print("---------------------------")
-    randomGen.printtable(map)
-
 
 # an inventory, which is initially empty
 inventory = []
