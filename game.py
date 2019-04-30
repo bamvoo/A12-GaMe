@@ -23,6 +23,38 @@ def showStatus():
         print('You see a ' + rooms[currentRoom]['item'])
     print("---------------------------")
 
+def showRoom(room):
+    roomFound = 0
+    message = "You see a door to"
+    if "north" in room:
+        roomFound += 1
+        message += " the north"
+    if "west" in room:
+        if roomFound > 0:
+            if "south" in room or "east" in room:
+                message+= ","
+            else:
+                message+= " and to"    
+        roomFound += 1
+        message += " the west"
+    if "south" in room:
+        if roomFound > 0:
+            if "east" in room:
+                message+= ","
+            else:
+                message+= " and to"  
+        roomFound += 1
+        message += " the south"
+    if "east" in room:
+        if roomFound > 0:
+            message+= " and to"
+        roomFound += 1
+        message += " the east"
+    message += "."
+    print (message)
+
+
+
 
 # an inventory, which is initially empty
 inventory = []
@@ -49,6 +81,7 @@ showInstructions()
 # loop forever
 while True:
     showStatus()
+    showRoom(rooms[currentRoom])
     # get the player's next 'move'
     # .split() breaks it up into an list array
     # eg typing 'go east' would give the list:
