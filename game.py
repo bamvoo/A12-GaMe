@@ -1,4 +1,6 @@
 #!/bin/python3
+import randomGen
+
 def showInstructions():
     # print a main menu and the commands
     print('''
@@ -25,40 +27,55 @@ def showStatus():
     print('You are in the ' + currentRoom)
     # print the current inventory
     print("Inventory : " + str(inventory))
-    print("Directions : " + str(directions))
     # print an item if there is one
     if "item" in rooms[currentRoom]:
         print('You see a ' + rooms[currentRoom]['item'])
-    print('''---------------------------
-        ''')
+    print("---------------------------")
+
+def showRoom(room):
+    roomFound = 0
+    message = "You see a door to"
+    if "north" in room:
+        roomFound += 1
+        message += " the north"
+    if "west" in room:
+        if roomFound > 0:
+            if "south" in room or "east" in room:
+                message+= ","
+            else:
+                message+= " and to"    
+        roomFound += 1
+        message += " the west"
+    if "south" in room:
+        if roomFound > 0:
+            if "east" in room:
+                message+= ","
+            else:
+                message+= " and to"  
+        roomFound += 1
+        message += " the south"
+    if "east" in room:
+        if roomFound > 0:
+            message+= " and to"
+        roomFound += 1
+        message += " the east"
+    message += "."
+    print (message)
 
 # array with directions to go in the moment
 directions = {'north','east','south','west'}
 # an inventory, which is initially empty
 inventory = []
 # a dictionary linking a room to other room positions
-rooms = {
-    'Hall': {'south': 'Kitchen',
-             'east': 'Dining Room',
-             'item': 'key'
-             },
-    'Kitchen': {'north': 'Hall',
-                'item': 'monster'
-                },
-
-    'Dining Room': {'west': 'Hall',
-                    'south': 'Garden',
-                    'item': 'potion'
-                    },
-
-    'Garden': {'north': 'Dining Room'}
-}
+modules= ["Hall", "Living room", "Kitchen", "Bathroom", "Room 1", "Room 2", "Room 3", "Garage", "Garden"]
+rooms, map  = randomGen.generateMap(modules, 5)
 # start the player in the Hall
 currentRoom = 'Hall'
 showInstructions()
 # loop forever
 while True:
     showStatus()
+    showRoom(rooms[currentRoom])
     # get the player's next 'move'
     # .split() breaks it up into an list array
     # eg typing 'go east' would give the list:
